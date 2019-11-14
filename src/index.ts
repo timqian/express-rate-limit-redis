@@ -6,7 +6,7 @@ interface Config {
   max: number;
 }
 
-function RateLimit({client, windowMs, max}: Config) {
+function RateLimit({ client, windowMs, max }: Config) {
 
   async function rateLimit(req: Request, res: Response, next: NextFunction)  {
     const key = `ip:${req.ip}`;

@@ -73,3 +73,4 @@ Defaults to 60000 (1 minute).
 - [ ] customize statusCode
 - [ ] header denoting request limit (X-RateLimit-Limit) and current usage (X-RateLimit-Remaining)
 - [ ] add test
+- [ ] ts lint
