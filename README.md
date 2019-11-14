@@ -1,2 +1,75 @@
 # express-rate-limit-redis
+
 An express rate-limiting middleware using redis as its storage
+
+## Requirements
+
+- Express > v4
+- Redis > v2.6.12
+- ioredis > v4 or ioredis-mock > v4
+
+## Install
+
+```bash
+npm i express-rate-limit-redis
+```
+
+## Usage
+
+```js
+const express = require('express');
+const app = express();
+const RateLimiter = require('express-rate-limit-redis');
+const Redis = require('ioredis');
+const client = new Redis();
+
+const limiter = RateLimiter({
+  client,
+  max: 3 // limit each IP to 3 requests per windowMs
+  windowMs: 60 * 1000, // 1 minute
+});
+
+app.use('/verify-phone-number', limiter);
+
+app.get('/verify-phone-number', (req, res) => {
+  res.json({
+    msg: 'ok',
+  });
+});
+```
+
+## Example
+
+> [./example/server.js](./example/server.js)
+
+1. Start example server
+```bash
+npm i
+node example/server.js
+```
+2. Navigate to `localhost:8080`
+3. Refresh the page for 3 times, you will find you are rate limited
+
+## Configuration options
+
+### max
+
+Max number of connections during windowMs milliseconds before sending a 429 response.
+
+May be a number, or a function that returns a number or a promise. If max is a function, it will be called with req and res params.
+
+Defaults to 5. Set to 0 to disable.
+
+### windowMs
+
+How long in milliseconds to keep records of requests in memory.
+
+Defaults to 60000 (1 minute).
+
+## TODO
+
+- [ ] rate limit based not only on `req.ip`, but on params of `req`
+- [ ] skip/whitelist requests
+- [ ] customize statusCode
+- [ ] header denoting request limit (X-RateLimit-Limit) and current usage (X-RateLimit-Remaining)
+- [ ] add test
