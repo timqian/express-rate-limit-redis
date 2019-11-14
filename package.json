@@ -1,6 +1,6 @@
 {
   "name": "express-rate-limit-redis",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An express rate-limiting middleware using redis as its storage",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

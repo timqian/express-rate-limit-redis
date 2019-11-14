@@ -60,15 +60,9 @@ node example/server.jss
 
 Max number of connections during windowMs milliseconds before sending a 429 response.
 
-May be a number, or a function that returns a number or a promise. If max is a function, it will be called with req and res params.
-
-Defaults to 5. Set to 0 to disable.
-
 ### windowMs
 
 How long in milliseconds to keep records of requests in memory.
-
-Defaults to 60000 (1 minute).
 
 ## TODO
 
