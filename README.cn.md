@@ -4,9 +4,9 @@
 
 可以实现为一个 express 的中间件。
 
-## 期望的 Usage
+## 期望的使用方法
 
-一个 express 中间件, 可以在不同的 API 上(指定事件)挂上这个中间件来做限制时间内调用次数的限制
+一个 express 中间件, 可以挂在不同的 API 上用来一定时间内的调用次数
 
 ### Install
 
@@ -48,6 +48,29 @@ app.get('/verify-phone-number', (req, res) => {
 
 [./src/index.js](./src/index.js)
 
-## [跑一个例子](./README.md#example)
+## 一个使用实例
 
-## [可以做的更好](./README.md#TODO)
+> [./example/server.js](./example/server.js)
+
+1. Start example server
+```bash
+# install dependency
+npm i
+# ts to js
+npm run build
+# start example server
+node example/server.js
+```
+2. 打开 `localhost:8080`
+3. 刷新页面 3 次以后会被 rate limitd
+
+> 使用了 [ioredis-mock](https://www.npmjs.com/package/ioredis-mock) 方便测试
+
+## 可以做的更好
+
+[TODO](./README.md#TODO)
+
+## 参考资料
+
+- [express-rate-limit](https://github.com/nfriedly/express-rate-limit/)
+- [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis)

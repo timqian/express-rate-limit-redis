@@ -44,8 +44,12 @@ app.get('/verify-phone-number', (req, res) => {
 
 1. Start example server
 ```bash
+# install dependency
 npm i
-node example/server.js
+# ts to js
+npm run build
+# start example server
+node example/server.jss
 ```
 2. Navigate to `localhost:8080`
 3. Refresh the page for 3 times, you will find you are rate limited
