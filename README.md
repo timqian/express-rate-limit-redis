@@ -78,3 +78,11 @@ Defaults to 60000 (1 minute).
 - [ ] header denoting request limit (X-RateLimit-Limit) and current usage (X-RateLimit-Remaining)
 - [ ] add test
 - [ ] ts lint
+
+## Thanks
+
+- [express-rate-limit](https://github.com/nfriedly/express-rate-limit/)
+- [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis)
+- [ioredis-mock)](https://github.com/stipsan/ioredis-mock)
+- [node.green](https://node.green/)
+- [30-second-guide-to-publishing-a-typescript-package-to-npm](https://medium.com/cameron-nokes/the-30-second-guide-to-publishing-a-typescript-package-to-npm-89d93ff7bccd)

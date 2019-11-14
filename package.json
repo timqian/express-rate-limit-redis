@@ -13,7 +13,7 @@
     "url": "git+https://github.com/timqian/express-rate-limit-redis.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "timqian",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/timqian/express-rate-limit-redis/issues"

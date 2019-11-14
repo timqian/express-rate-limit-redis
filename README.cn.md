@@ -6,12 +6,12 @@
 
 ## 期望的使用方法
 
-一个 express 中间件, 可以挂在不同的 API 上用来一定时间内的调用次数
+一个 express 中间件, 可以挂在不同的 API 上用来限制一定时间内被特定用户调用得次数
 
 ### Install
 
 ```bash
-npm i express express-rate-limit-redis ioredis
+npm i express-rate-limit-redis
 ```
 
 ### Server code
