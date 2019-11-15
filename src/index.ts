@@ -2,14 +2,15 @@ import { Request, Response, NextFunction } from 'express';
 
 interface Config {
   client: any;
+  id?: string;
   windowMs: number;
   max: number;
 }
 
-function RateLimit({ client, windowMs, max }: Config) {
+function RateLimit({ client, id, windowMs, max }: Config) {
 
   async function rateLimit(req: Request, res: Response, next: NextFunction)  {
-    const key = `ip:${req.ip}`;
+    const key = `${id ? id : ''}:${req.ip}`;
 
     // reply format from ioredis: [ [ null, 1 ], [ null, -1 ] ]
     const replies = await client.multi()
@@ -27,7 +28,7 @@ function RateLimit({ client, windowMs, max }: Config) {
     }
 
     // stop user from accessing the API
-    if (hits >= max) {
+    if (hits > max) {
       return res.status(429).send('Too many requests, please try again later.');
     }
 

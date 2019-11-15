@@ -25,7 +25,8 @@ const client = new Redis();
 
 const limiter = RateLimiter({
   client,
-  max: 3 // limit each IP to 3 requests per windowMs
+  id: 'verify-phone-number',
+  max: 3, // limit each IP to 3 requests per windowMs
   windowMs: 60 * 1000, // 1 minute
 });
 
@@ -36,6 +37,24 @@ app.get('/verify-phone-number', (req, res) => {
     msg: 'ok',
   });
 });
+
+const limiter2 = RateLimiter({
+  client,
+  id: 'change-password',
+  max: 1, // limit each IP to 1 requests per windowMs
+  windowMs: 10 * 60 * 1000, // 10 minute
+});
+
+app.get('/change-password', limiter2, (req, res) => {
+  res.json({
+    msg: 'ok',
+  });
+});
+
+const { PORT = 8080 } = process.env;
+app.listen(PORT);
+console.log(`server running on http://localhost:${PORT}`);
+
 ```
 
 ## Example
@@ -51,10 +70,14 @@ npm run build
 # start example server
 node example/server.jss
 ```
-2. Navigate to `localhost:8080`
+2. Navigate to `http://localhost:8080/verify-phone-number`
 3. Refresh the page for 3 times, you will find you are rate limited
 
 ## Configuration options
+
+### id(optional)
+
+Identifier of a limiter, to support multiple rate-limiter
 
 ### max
 
